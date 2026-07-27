@@ -340,10 +340,10 @@ export default function ProjectPipeline() {
     };
   }, [activeId, selectedStage, isUserControlled, project.stages.length]);
 
-  // Resume auto-play after 8s of inactivity
+  // Resume auto-play after 30s of inactivity
   useEffect(() => {
     if (!isUserControlled) return;
-    const resume = setTimeout(() => setIsUserControlled(false), 8000);
+    const resume = setTimeout(() => setIsUserControlled(false), 30000);
     return () => clearTimeout(resume);
   }, [isUserControlled, activeId, selectedStage]);
 
