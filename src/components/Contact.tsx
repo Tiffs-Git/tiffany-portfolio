@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Mail, Linkedin, MessageSquare, Clock, Briefcase } from 'lucide-react';
 
 const availableFor = [
-  'Discovery sessions — bring your messiest problem and let’s brainstorm. No pitch, just a good conversation',
+  'Free discovery session — tell me the problem, and we’ll troubleshoot and brainstorm a solution together. No pitch, just a good conversation',
   'AI Agent design and multi-step workflow automation',
   'Compliance engineering — from mapping requirements to deployable solutions',
   'Digital transformation for legacy systems integration',
