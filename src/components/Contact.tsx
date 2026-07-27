@@ -81,7 +81,7 @@ export default function Contact() {
               </div>
             </a>
 
-            <div className="mt-8 pt-6 border-t border-gold-800/20 space-y-5">
+            <div className="mt-16 pt-8 border-t border-gold-800/20 space-y-6">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-navy-800/60 border border-warm-300/10 flex items-center justify-center">
                   <Briefcase size={16} className="text-warm-300/50" />
