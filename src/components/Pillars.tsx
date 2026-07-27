@@ -1,4 +1,4 @@
-import { Puzzle, Bot, ShieldCheck, FileSearch, GraduationCap } from 'lucide-react';
+import { Puzzle, Bot, ShieldCheck, FileSearch, GraduationCap, ServerCog } from 'lucide-react';
 
 const pillars = [
   {
@@ -40,6 +40,14 @@ const pillars = [
     color: 'text-fuchsia-400',
     border: 'border-fuchsia-600/30',
     bg: 'bg-fuchsia-900/10',
+  },
+  {
+    icon: ServerCog,
+    title: 'Platform Ownership',
+    desc: 'Standing administrator of seven enterprise platforms. Access, governance, and vendor management that keep systems accurate, secure, and audit-ready.',
+    color: 'text-teal-300',
+    border: 'border-teal-700/30',
+    bg: 'bg-teal-900/10',
   },
 ];
 

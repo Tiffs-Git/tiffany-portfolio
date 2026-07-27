@@ -18,7 +18,7 @@ const certs = [
 ];
 
 const industryInvolvement = [
-  { label: 'WATS Delegate', sub: 'World Aviation Training Summit' },
+  { label: 'WATS Delegate', sub: 'Annual delegate · AI & training standards working groups' },
   { label: 'IOSA Audit Preparation', sub: 'IATA Operational Safety Audit' },
   { label: 'Cross-Airline Benchmarking', sub: 'Pilot training program comparisons' },
   { label: 'FAA AQP Oversight', sub: 'Advanced Qualification Program' },

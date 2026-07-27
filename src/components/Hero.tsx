@@ -67,11 +67,33 @@ export default function Hero() {
             View My Work
           </a>
           <a
+            href="/tiffany-portfolio/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 border border-gold-500/60 text-gold-300 hover:border-gold-400 hover:text-gold-200 font-medium text-sm tracking-widest uppercase rounded transition-all duration-200"
+          >
+            Resume
+          </a>
+          <a
             href="#about"
             className="px-8 py-3 border border-teal-500/60 text-teal-300 hover:border-teal-400 hover:text-teal-200 font-medium text-sm tracking-widest uppercase rounded transition-all duration-200"
           >
             About Me
           </a>
+        </div>
+
+        {/* Stat strip */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14">
+          {[
+            { n: '9 years', label: 'inside global airline operations' },
+            { n: '7 platforms', label: 'administered as standing owner' },
+            { n: '3,500+', label: 'employees onboarded' },
+          ].map((s) => (
+            <div key={s.n} className="text-center">
+              <p className="font-display text-2xl md:text-3xl text-gradient-gold leading-none">{s.n}</p>
+              <p className="text-warm-300/60 text-xs tracking-wide mt-1.5">{s.label}</p>
+            </div>
+          ))}
         </div>
       </div>
 

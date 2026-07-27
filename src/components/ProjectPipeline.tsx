@@ -149,39 +149,6 @@ function FleetDocsVisual({ color }: { color: string }) {
   );
 }
 
-function TimelineCompressVisual({ color }: { color: string }) {
-  return (
-    <svg viewBox="0 0 200 100" className="w-full h-full" aria-hidden="true">
-      {/* Before bar — long */}
-      <rect x="12" y="20" width="80" height="14" rx="4"
-        fill="rgba(221,208,191,0.08)" stroke="rgba(221,208,191,0.25)" strokeWidth="0.8" />
-      {[0,1,2,3,4,5,6,7,8,9,11,13,15,17,19].map((s, i) => (
-        <rect key={i} x={14 + s * 4.6} y="24" width="3" height="6" rx="1"
-          fill="rgba(221,208,191,0.18)" />
-      ))}
-      <text x="12" y="46" fontSize="8" fill="rgba(221,208,191,0.4)" fontFamily="Inter,sans-serif">20 days</text>
-
-      {/* Arrow down */}
-      <line x1="52" y1="52" x2="52" y2="60" stroke={color} strokeOpacity="0.5" strokeWidth="1.5" />
-      <polygon points="49,60 52,66 55,60" fill={color} fillOpacity="0.5" />
-
-      {/* After bar — compressed */}
-      <rect x="12" y="68" width="44" height="14" rx="4"
-        fill={color} fillOpacity="0.1" stroke={color} strokeOpacity="0.5" strokeWidth="0.8" />
-      {[0,1,2,3,4,5,6,7,8,9].map((s, i) => (
-        <rect key={i} x={14 + s * 4} y="72" width="3" height="6" rx="1"
-          fill={color} fillOpacity="0.35" />
-      ))}
-      <text x="12" y="94" fontSize="8" fill={color} fillOpacity="0.7" fontFamily="Inter,sans-serif" fontWeight="600">10 days</text>
-
-      {/* Right side labels */}
-      <text x="120" y="32" fontSize="9" fill="rgba(221,208,191,0.3)" fontFamily="Inter,sans-serif">Before</text>
-      <text x="120" y="80" fontSize="9" fill={color} fillOpacity="0.7" fontFamily="Inter,sans-serif" fontWeight="600">After</text>
-      <text x="118" y="92" fontSize="7.5" fill={color} fillOpacity="0.5" fontFamily="Inter,sans-serif">0 missed deadlines</text>
-    </svg>
-  );
-}
-
 function DocStructureVisual({ color }: { color: string }) {
   const messyLines = [
     { x: 8, y: 14, w: 62 }, { x: 14, y: 24, w: 48 }, { x: 6, y: 34, w: 70 },
@@ -223,41 +190,34 @@ function DocStructureVisual({ color }: { color: string }) {
   );
 }
 
-function TraceMatrixVisual({ color }: { color: string }) {
-  const reqs = [16, 34, 52, 70, 88];
-  const docs = [20, 44, 68, 88];
-  const links: [number, number][] = [[0, 0], [0, 1], [1, 1], [2, 2], [3, 1], [3, 3], [4, 3]];
+function TrendFlowVisual({ color }: { color: string }) {
+  const sources = [14, 32, 50, 68, 86];
   return (
     <svg viewBox="0 0 200 100" className="w-full h-full" aria-hidden="true">
-      {/* Left column: requirements */}
-      {reqs.map((y, i) => (
+      {/* Left: five platform signals */}
+      {sources.map((y, i) => (
         <g key={i}>
-          <rect x="14" y={y - 5} width="30" height="11" rx="2"
-            fill={color} fillOpacity="0.1" stroke={color} strokeOpacity="0.45" strokeWidth="0.8" />
-          <text x="29" y={y + 3} fontSize="6.5" fill={color} fillOpacity="0.8"
-            fontFamily="monospace" textAnchor="middle">REQ-{i + 1}</text>
+          <circle cx="18" cy={y} r="5" fill={color} fillOpacity="0.12" />
+          <circle cx="18" cy={y} r="3" fill={color} fillOpacity="0.65" />
+          <line x1="23" y1={y} x2="88" y2="50" stroke={color} strokeOpacity="0.25" strokeWidth="0.8" />
         </g>
       ))}
 
-      {/* Right column: documents */}
-      {docs.map((y, i) => (
-        <g key={i}>
-          <rect x="156" y={y - 6} width="26" height="13" rx="2"
-            fill="rgba(221,208,191,0.06)" stroke="rgba(221,208,191,0.3)" strokeWidth="0.8" />
-          <line x1="160" y1={y - 1} x2="178" y2={y - 1} stroke="rgba(221,208,191,0.25)" strokeWidth="0.8" />
-          <line x1="160" y1={y + 3} x2="172" y2={y + 3} stroke="rgba(221,208,191,0.25)" strokeWidth="0.8" />
-        </g>
-      ))}
+      {/* Center: the engine */}
+      <circle cx="97" cy="50" r="13" fill={color} fillOpacity="0.1" stroke={color} strokeOpacity="0.4" strokeWidth="0.8" strokeDasharray="3 2" />
+      <circle cx="97" cy="50" r="6" fill={color} fillOpacity="0.85" />
+      <circle cx="97" cy="50" r="2.5" fill="#0c1a2e" fillOpacity="0.8" />
 
-      {/* Traceability links */}
-      {links.map(([r, d], i) => (
-        <line key={i} x1="44" y1={reqs[r]} x2="156" y2={docs[d]}
-          stroke={color} strokeOpacity="0.35" strokeWidth="0.8" />
-      ))}
+      {/* Arrow to product */}
+      <line x1="112" y1="50" x2="138" y2="50" stroke={color} strokeOpacity="0.5" strokeWidth="1.5" />
+      <polygon points="138,47 144,50 138,53" fill={color} fillOpacity="0.5" />
 
-      {/* Center node */}
-      <circle cx="100" cy="52" r="7" fill={color} fillOpacity="0.15" />
-      <circle cx="100" cy="52" r="4" fill={color} fillOpacity="0.85" />
+      {/* Right: finished product */}
+      <rect x="150" y="32" width="34" height="36" rx="3"
+        fill={color} fillOpacity="0.08" stroke={color} strokeOpacity="0.5" strokeWidth="1" />
+      <line x1="156" y1="42" x2="178" y2="42" stroke={color} strokeOpacity="0.4" strokeWidth="1" />
+      <line x1="156" y1="50" x2="172" y2="50" stroke={color} strokeOpacity="0.4" strokeWidth="1" />
+      <circle cx="167" cy="60" r="3.5" fill={color} fillOpacity="0.5" />
     </svg>
   );
 }
@@ -282,53 +242,38 @@ const pipelineProjects: PipelineProject[] = [
   },
   {
     id: 2,
-    title: 'XML/XSD Document Architecture',
+    title: 'Regulatory Traceability Engine',
     category: 'Regulatory Systems Design',
     color: '#c9a04a',
-    outcome: 'First machine-readable dependency map in aviation regulatory compliance. Zero manual tracking. FAA/IOSA audit-ready.',
+    outcome: 'First machine-readable regulatory dependency map of its kind in aviation compliance — benchmarked one-to-one against the IOSA standard. Zero manual tracking. FAA/IOSA audit-ready.',
     visual: XmlChaosVisual,
     stages: [
-      { label: 'Gap Identified', detail: 'No machine-readable link between the authoritative manual and 7 cross-fleet training modules — changes caused unknown downstream impact.' },
-      { label: 'Architecture Design', detail: 'XML/XSD schema designed to structure the manual and all 7 modules with explicit dependency relationships.' },
-      { label: 'Interface Built', detail: 'Queryable HTML interface built to surface every downstream document change required when any manual section updates.' },
-      { label: 'Audit Trail Created', detail: 'Defensible traceability record created for FAA and IOSA review — replacing manual spreadsheet tracking entirely.' },
-      { label: 'Zero Manual Tracking', detail: 'Fully automated downstream change detection deployed. First machine-readable dependency map of its kind.' },
+      { label: 'Zero Documentation', detail: 'Nothing connected regulatory requirements to internal compliance artifacts — the traceability matrix had to be reverse-engineered from raw XML and DITA source with no map to start from.' },
+      { label: 'Industry Benchmark', detail: 'Contacted IOSA to obtain their XML structure and mapped it one-to-one before building anything — anchoring the architecture to the international audit standard from day one.' },
+      { label: 'Schema Built', detail: 'XML/XSD schema designed to structure the authoritative manual and 7 cross-fleet training modules with explicit dependency relationships.' },
+      { label: 'Queryable Interface', detail: 'HTML interface surfaces every downstream document change required when any section updates — replacing manual spreadsheet tracking entirely.' },
+      { label: 'Audit-Ready', detail: 'Defensible traceability record for FAA and IOSA review. First machine-readable dependency map of its kind in aviation compliance.' },
     ],
   },
   {
     id: 3,
-    title: 'Fleet SharePoint Remediation',
-    category: 'Digital Footprint Architecture',
+    title: 'The Drift Audit',
+    category: 'Document Forensics & Governance',
     color: '#d4814f',
-    outcome: '~66% site reduction. 100% stakeholder adoption within 30 days. Dead sites eliminated, navigation restored.',
+    outcome: 'One critical manual living in 17 places became a single governed source of truth. ~66% page reduction. 100% stakeholder adoption within 30 days.',
     visual: FleetDocsVisual,
     stages: [
-      { label: 'Discovery', detail: 'The intranet site collection had grown completely out of control — 7 fleets sharing one SharePoint environment riddled with dead sites, orphaned pages, and no way to tell current from obsolete.' },
-      { label: 'Digital Audit', detail: 'Every site and page catalogued, including abandoned sites no one knew were still live. Mapped the full digital footprint before touching anything.' },
-      { label: 'Architecture Designed', detail: 'Analyzed all content for common denominators and built one foundational template everything else branches from — a single source of truth, with fleet-specific ownership, consistent naming conventions, and a governed taxonomy.' },
-      { label: 'Sites Consolidated', detail: '210+ pages reduced to ~70. Dead sites decommissioned, redundancies removed, ownership clearly assigned per fleet.' },
-      { label: '100% Adoption', detail: 'Full stakeholder adoption across all 7 fleets within ~30 days. Governance baked in from day one — because retrofitting standards onto sprawl is the hard lesson this project taught.' },
-    ],
-  },
-  {
-    id: 4,
-    title: 'Training Workflow Automation',
-    category: 'Compliance & Orchestration',
-    color: '#e8cf9a',
-    outcome: 'Cycle time cut from 20 days → 10 days. Zero missed regulatory deadlines.',
-    visual: TimelineCompressVisual,
-    stages: [
-      { label: 'Process Audited', detail: 'Timing-sensitive compliance steps after pilot transition training were too manual — dependent on individual follow-through and prone to delays.' },
-      { label: 'Trigger Designed', detail: 'Workflow logic mapped: training schedule → module completion → compliance form activation at exact training end moment.' },
-      { label: 'Automation Built', detail: 'Auto-triggered workflow fires compliance forms the moment training ends, capturing structured feedback in a repeatable format.' },
-      { label: 'Feedback Captured', detail: 'Structured feedback loop embedded — every completion generates consistent, usable compliance data without manual entry.' },
-      { label: '20 → 10 Days', detail: 'Cycle time halved. Zero missed regulatory deadlines. Manual coordination eliminated.' },
+      { label: 'Full Download', detail: 'Pulled the entire document library and every fleet site page for offline cross-analysis — the only way to see the whole picture at once.' },
+      { label: '17 Versions Found', detail: 'Cross-referenced where every document actually lived. One safety-critical operations manual appeared on 17 different pages — and the versions did not all match.' },
+      { label: 'Common Denominators', detail: 'Analyzed all content for shared structure and built one foundational template everything else branches from — a single source of truth with fleet-specific ownership and a governed taxonomy.' },
+      { label: 'The Consolidation', detail: '210+ pages reduced to ~70. Dead sites decommissioned, duplicate copies eliminated, ownership clearly assigned per fleet.' },
+      { label: '100% Adoption', detail: 'Full stakeholder adoption across all 7 fleets within ~30 days. Governance baked in from day one — because retrofitting standards onto sprawl is the hard way.' },
     ],
   },
   {
     id: 5,
-    title: 'Document Structuring App',
-    category: 'AI & Content Architecture',
+    title: 'The Content Refinery',
+    category: 'AI Infrastructure',
     color: '#7ec9a0',
     outcome: 'Unstructured documentation transformed into AI-ready structured content — traceability matrices, audit outputs, and metadata taxonomies generated automatically. Read-only architecture: originals never modified.',
     visual: DocStructureVisual,
@@ -342,17 +287,17 @@ const pipelineProjects: PipelineProject[] = [
   },
   {
     id: 6,
-    title: 'ComplianceIQ',
-    category: 'Founder Project · Traceability Platform',
+    title: 'Trend-to-Product Pipeline',
+    category: 'Independent Venture · Autonomous E-Commerce',
     color: '#6aa8e0',
-    outcome: 'Multi-industry regulatory traceability platform connecting compliance requirements to internal documentation. Live testing surfaced real compliance gaps and language discrepancies. Built from architecture to MVP.',
-    visual: TraceMatrixVisual,
+    outcome: 'A self-running commerce pipeline: five platforms scanned daily, one human input, finished products out — validated by real sales across a live storefront.',
+    visual: TrendFlowVisual,
     stages: [
-      { label: 'Gap Identified', detail: 'Across industries, compliance requirements live in one world and internal documentation in another — with no traceable link between them, gaps go unnoticed until an audit finds them.' },
-      { label: 'Engine Designed', detail: 'Core traceability engine designed to connect regulatory requirements directly to internal documentation — the same architecture pattern proven in aviation compliance work.' },
-      { label: 'Dual-Industry MVP', detail: 'MVP built targeting aviation AQP compliance and construction — demonstrating the traceability engine works across sectors, not just one domain.' },
-      { label: 'Live Testing', detail: 'Real-world testing surfaced genuine compliance gaps and language discrepancies between requirements and internal documents — validating the core premise.' },
-      { label: 'Platform Evolving', detail: 'Active development continues, expanding coverage and refining gap detection. Founder-built and founder-run.' },
+      { label: 'Signal Scan', detail: 'Automated daily sweep of five platforms — TikTok, Instagram, Pinterest, Reddit, and Google — extracting trending themes and market gaps in real time.' },
+      { label: 'One Input', detail: 'A single theme is the only human touchpoint in the entire system. Everything downstream runs itself.' },
+      { label: 'Generation', detail: 'Python pipelines produce the content, design assets, and SEO copy — assembled automatically into a finished digital product package.' },
+      { label: 'To Market', detail: 'Listings optimized with multi-layered keyword analysis pulled from live marketplace data — built to be found, not just posted.' },
+      { label: 'Sales-Validated', detail: 'Measurable sales impact across a 60-item storefront. The system proves itself in revenue, not demos.' },
     ],
   },
 ];
