@@ -54,6 +54,15 @@ const pillars = [
 export default function Pillars() {
   return (
     <section className="relative z-10 py-16 px-6">
+      <div className="max-w-6xl mx-auto mb-10">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="h-px flex-1 max-w-[60px] bg-gold-500/50" />
+          <span className="text-gold-400 text-xs tracking-[0.3em] uppercase font-medium">Core Disciplines</span>
+        </div>
+        <h2 className="font-display text-4xl md:text-5xl text-warm-100 leading-tight">
+          What I Do
+        </h2>
+      </div>
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {pillars.map((p) => (
           <div

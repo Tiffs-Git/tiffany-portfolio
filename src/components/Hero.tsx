@@ -103,7 +103,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-warm-300/50 hover:text-gold-300 transition-colors animate-bounce"
         aria-label="Scroll down"
       >
-        <ChevronDown size={28} />
+        <ChevronDown size={44} strokeWidth={2.5} />
       </a>
     </section>
   );
