@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Mail, Linkedin, MessageSquare, Clock, Briefcase } from 'lucide-react';
+import { Mail, Linkedin, MessageSquare, Clock, Briefcase, FileText } from 'lucide-react';
 
 const availableFor = [
   'Free discovery session — tell me the problem, and we’ll troubleshoot and brainstorm a solution together. No pitch, just a good conversation',
@@ -60,6 +60,23 @@ export default function Contact() {
                 <p className="text-warm-300/60 text-xs tracking-widest uppercase mb-0.5">Email</p>
                 <p className="text-gold-300 text-sm group-hover:text-gold-200 transition-colors">
                   tiffanycastro83@yahoo.com
+                </p>
+              </div>
+            </a>
+
+            <a
+              href="/tiffany-portfolio/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 group"
+            >
+              <div className="w-9 h-9 rounded-lg bg-copper-600/20 border border-copper-600/40 flex items-center justify-center group-hover:bg-copper-600/30 transition-colors">
+                <FileText size={16} className="text-copper-300" />
+              </div>
+              <div>
+                <p className="text-warm-300/60 text-xs tracking-widest uppercase mb-0.5">Resume</p>
+                <p className="text-copper-300 text-sm group-hover:text-copper-200 transition-colors">
+                  View my resume (PDF)
                 </p>
               </div>
             </a>
