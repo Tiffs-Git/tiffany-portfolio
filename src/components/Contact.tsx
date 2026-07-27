@@ -81,16 +81,14 @@ export default function Contact() {
               </div>
             </a>
 
-            <div className="pt-2 border-t border-gold-800/20 space-y-3">
-              
-              
+            <div className="mt-8 pt-6 border-t border-gold-800/20 space-y-5">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-navy-800/60 border border-warm-300/10 flex items-center justify-center">
                   <Briefcase size={16} className="text-warm-300/50" />
                 </div>
                 <div>
                   <p className="text-warm-300/60 text-xs tracking-widest uppercase mb-0.5">Work Format</p>
-                  <p className="text-warm-200 text-sm">Remote · Contract · Full-time</p>
+                  <p className="text-warm-200 text-sm">In-Person · Remote · Contract · Full-time</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
