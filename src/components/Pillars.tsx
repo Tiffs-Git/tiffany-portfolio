@@ -1,4 +1,4 @@
-import { Puzzle, Bot, ShieldCheck, FileSearch } from 'lucide-react';
+import { Puzzle, Bot, ShieldCheck, FileSearch, GraduationCap } from 'lucide-react';
 
 const pillars = [
   {
@@ -33,12 +33,20 @@ const pillars = [
     border: 'border-gold-700/30',
     bg: 'bg-gold-900/10',
   },
+  {
+    icon: GraduationCap,
+    title: 'Learning & Enablement',
+    desc: 'Certified instructional designer and facilitator. Curriculum, classrooms, and job aids built for the moment it clicks—onboarding 3,500+ across an enterprise.',
+    color: 'text-fuchsia-400',
+    border: 'border-fuchsia-600/30',
+    bg: 'bg-fuchsia-900/10',
+  },
 ];
 
 export default function Pillars() {
   return (
     <section className="relative z-10 py-16 px-6">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {pillars.map((p) => (
           <div
             key={p.title}

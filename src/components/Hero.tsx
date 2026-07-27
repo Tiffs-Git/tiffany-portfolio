@@ -50,7 +50,7 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="font-display text-warm-100 mb-4 leading-tight tracking-tight">
           <span className="block text-5xl md:text-7xl lg:text-8xl">Tiffany Castro</span>
-          <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 text-gradient-gold">Regulatory Systems Architect</span>
+          <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 text-gradient-gold">Regulatory Solutions Architect</span>
         </h1>
 
         {/* Location */}

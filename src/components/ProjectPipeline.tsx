@@ -182,6 +182,86 @@ function TimelineCompressVisual({ color }: { color: string }) {
   );
 }
 
+function DocStructureVisual({ color }: { color: string }) {
+  const messyLines = [
+    { x: 8, y: 14, w: 62 }, { x: 14, y: 24, w: 48 }, { x: 6, y: 34, w: 70 },
+    { x: 18, y: 44, w: 40 }, { x: 10, y: 54, w: 58 }, { x: 8, y: 64, w: 66 },
+    { x: 16, y: 74, w: 44 }, { x: 12, y: 84, w: 54 },
+  ];
+  const tree = [
+    { x: 118, y: 16, w: 34, indent: 0 },
+    { x: 126, y: 30, w: 44, indent: 1 },
+    { x: 134, y: 44, w: 36, indent: 2 },
+    { x: 134, y: 58, w: 40, indent: 2 },
+    { x: 126, y: 72, w: 46, indent: 1 },
+    { x: 134, y: 86, w: 32, indent: 2 },
+  ];
+  return (
+    <svg viewBox="0 0 200 100" className="w-full h-full" aria-hidden="true">
+      {/* Left: unstructured text lines */}
+      {messyLines.map((l, i) => (
+        <rect key={i} x={l.x} y={l.y} width={l.w} height="3.5" rx="1.5"
+          fill="rgba(221,208,191,0.18)"
+          transform={`rotate(${(i % 3) * 2 - 2}, ${l.x + l.w / 2}, ${l.y})`} />
+      ))}
+
+      {/* Arrow */}
+      <line x1="90" y1="50" x2="103" y2="50" stroke={color} strokeOpacity="0.5" strokeWidth="1.5" />
+      <polygon points="103,47 109,50 103,53" fill={color} fillOpacity="0.5" />
+
+      {/* Right: structured tree */}
+      {tree.map((n, i) => (
+        <g key={i}>
+          <circle cx={n.x - 4} cy={n.y + 2} r="2" fill={color} fillOpacity={0.8 - n.indent * 0.2} />
+          <rect x={n.x} y={n.y} width={n.w} height="4" rx="2"
+            fill={color} fillOpacity={0.55 - n.indent * 0.13} />
+        </g>
+      ))}
+      {/* Tree connector lines */}
+      <line x1="114" y1="18" x2="114" y2="88" stroke={color} strokeOpacity="0.25" strokeWidth="0.8" />
+    </svg>
+  );
+}
+
+function TraceMatrixVisual({ color }: { color: string }) {
+  const reqs = [16, 34, 52, 70, 88];
+  const docs = [20, 44, 68, 88];
+  const links: [number, number][] = [[0, 0], [0, 1], [1, 1], [2, 2], [3, 1], [3, 3], [4, 3]];
+  return (
+    <svg viewBox="0 0 200 100" className="w-full h-full" aria-hidden="true">
+      {/* Left column: requirements */}
+      {reqs.map((y, i) => (
+        <g key={i}>
+          <rect x="14" y={y - 5} width="30" height="11" rx="2"
+            fill={color} fillOpacity="0.1" stroke={color} strokeOpacity="0.45" strokeWidth="0.8" />
+          <text x="29" y={y + 3} fontSize="6.5" fill={color} fillOpacity="0.8"
+            fontFamily="monospace" textAnchor="middle">REQ-{i + 1}</text>
+        </g>
+      ))}
+
+      {/* Right column: documents */}
+      {docs.map((y, i) => (
+        <g key={i}>
+          <rect x="156" y={y - 6} width="26" height="13" rx="2"
+            fill="rgba(221,208,191,0.06)" stroke="rgba(221,208,191,0.3)" strokeWidth="0.8" />
+          <line x1="160" y1={y - 1} x2="178" y2={y - 1} stroke="rgba(221,208,191,0.25)" strokeWidth="0.8" />
+          <line x1="160" y1={y + 3} x2="172" y2={y + 3} stroke="rgba(221,208,191,0.25)" strokeWidth="0.8" />
+        </g>
+      ))}
+
+      {/* Traceability links */}
+      {links.map(([r, d], i) => (
+        <line key={i} x1="44" y1={reqs[r]} x2="156" y2={docs[d]}
+          stroke={color} strokeOpacity="0.35" strokeWidth="0.8" />
+      ))}
+
+      {/* Center node */}
+      <circle cx="100" cy="52" r="7" fill={color} fillOpacity="0.15" />
+      <circle cx="100" cy="52" r="4" fill={color} fillOpacity="0.85" />
+    </svg>
+  );
+}
+
 // ── Project data ──────────────────────────────────────────────────────────────
 
 const pipelineProjects: PipelineProject[] = [
@@ -225,9 +305,9 @@ const pipelineProjects: PipelineProject[] = [
     stages: [
       { label: 'Discovery', detail: 'The intranet site collection had grown completely out of control — 7 fleets sharing one SharePoint environment riddled with dead sites, orphaned pages, and no way to tell current from obsolete.' },
       { label: 'Digital Audit', detail: 'Every site and page catalogued, including abandoned sites no one knew were still live. Mapped the full digital footprint before touching anything.' },
-      { label: 'Architecture Designed', detail: 'Built a new site structure from scratch — fleet-specific ownership, consistent naming conventions, and a taxonomy reverse-engineered with minimal baseline to work from.' },
+      { label: 'Architecture Designed', detail: 'Analyzed all content for common denominators and built one foundational template everything else branches from — a single source of truth, with fleet-specific ownership, consistent naming conventions, and a governed taxonomy.' },
       { label: 'Sites Consolidated', detail: '210+ pages reduced to ~70. Dead sites decommissioned, redundancies removed, ownership clearly assigned per fleet.' },
-      { label: '100% Adoption', detail: 'Full stakeholder adoption across all 7 fleets within ~30 days. Staff could finally find what they needed, and nothing that should not exist was still there.' },
+      { label: '100% Adoption', detail: 'Full stakeholder adoption across all 7 fleets within ~30 days. Governance baked in from day one — because retrofitting standards onto sprawl is the hard lesson this project taught.' },
     ],
   },
   {
@@ -243,6 +323,36 @@ const pipelineProjects: PipelineProject[] = [
       { label: 'Automation Built', detail: 'Auto-triggered workflow fires compliance forms the moment training ends, capturing structured feedback in a repeatable format.' },
       { label: 'Feedback Captured', detail: 'Structured feedback loop embedded — every completion generates consistent, usable compliance data without manual entry.' },
       { label: '20 → 10 Days', detail: 'Cycle time halved. Zero missed regulatory deadlines. Manual coordination eliminated.' },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Document Structuring App',
+    category: 'AI & Content Architecture',
+    color: '#7ec9a0',
+    outcome: 'Unstructured documentation transformed into AI-ready structured content — traceability matrices, audit outputs, and metadata taxonomies generated automatically. Read-only architecture: originals never modified.',
+    visual: DocStructureVisual,
+    stages: [
+      { label: 'Problem Scoped', detail: 'AI query accuracy in production workflows was unreliable — and the root cause was the content itself. Unstructured documentation meant the AI had nothing solid to stand on.' },
+      { label: 'Extraction Built', detail: 'Node.js application built to perform structural extraction from source documents — read-only by design, so original documents are never modified.' },
+      { label: 'Schema Suggested', detail: 'The app analyzes content and proposes a structure — with human-in-the-loop approval, so a person always validates before anything is standardized.' },
+      { label: 'Standards Harmonized', detail: 'Content harmonized against standards with metadata taxonomy classification — turning scattered documents into a consistent, governed library.' },
+      { label: 'AI-Ready Output', detail: 'Traceability matrices, compliance audit outputs, and classified metadata generated from source documents. Structure first — that is what makes AI accurate.' },
+    ],
+  },
+  {
+    id: 6,
+    title: 'ComplianceIQ',
+    category: 'Founder Project · Traceability Platform',
+    color: '#6aa8e0',
+    outcome: 'Multi-industry regulatory traceability platform connecting compliance requirements to internal documentation. Live testing surfaced real compliance gaps and language discrepancies. Built from architecture to MVP.',
+    visual: TraceMatrixVisual,
+    stages: [
+      { label: 'Gap Identified', detail: 'Across industries, compliance requirements live in one world and internal documentation in another — with no traceable link between them, gaps go unnoticed until an audit finds them.' },
+      { label: 'Engine Designed', detail: 'Core traceability engine designed to connect regulatory requirements directly to internal documentation — the same architecture pattern proven in aviation compliance work.' },
+      { label: 'Dual-Industry MVP', detail: 'MVP built targeting aviation AQP compliance and construction — demonstrating the traceability engine works across sectors, not just one domain.' },
+      { label: 'Live Testing', detail: 'Real-world testing surfaced genuine compliance gaps and language discrepancies between requirements and internal documents — validating the core premise.' },
+      { label: 'Platform Evolving', detail: 'Active development continues, expanding coverage and refining gap detection. Founder-built and founder-run.' },
     ],
   },
 ];

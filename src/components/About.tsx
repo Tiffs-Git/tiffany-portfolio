@@ -12,9 +12,9 @@ const certs = [
   { label: 'Lean Six Sigma Green Belt', year: '2023', color: 'text-gold-300 border-gold-700/40 bg-gold-900/20' },
   { label: 'Dangerous Goods Certified', year: '2022', color: 'text-copper-300 border-copper-600/40 bg-navy-800/40' },
   { label: 'Principles of Leadership', year: '2022', color: 'text-copper-300 border-copper-600/40 bg-navy-800/40' },
+  { label: 'Effective Public Speaking', year: '2022', color: 'text-copper-300 border-copper-600/40 bg-navy-800/40' },
   { label: 'TESOL', year: '2021', color: 'text-warm-200 border-warm-300/20 bg-navy-800/30' },
-  { label: 'TSSOL', year: '2021', color: 'text-warm-200 border-warm-300/20 bg-navy-800/30' },
-  { label: 'AWS CLF-C02', year: 'In Progress', color: 'text-green-300 border-green-700/40 bg-green-900/20' },
+  { label: 'TSSL (Spanish)', year: '2021', color: 'text-warm-200 border-warm-300/20 bg-navy-800/30' },
 ];
 
 const industryInvolvement = [
@@ -82,7 +82,7 @@ export default function About() {
                 <div>
                   <h3 className="font-display text-2xl text-warm-100 leading-tight">Tiffany Castro</h3>
                   <p className="text-teal-300/80 text-xs mt-0.5 tracking-wide">
-                    Regulatory Systems Architect · Compliance Infrastructure · AI &amp; Automation
+                    Regulatory Solutions Architect · Compliance Infrastructure · AI &amp; Automation
                   </p>
                 </div>
               </div>
