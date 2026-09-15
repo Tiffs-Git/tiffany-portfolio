@@ -65,7 +65,7 @@ const tagGroups = [
       'Working Session Facilitation',
       'WATS Annual Delegate',
       'IATA Working Groups',
-      '3,500+ People Onboarded',
+      '4,000 People Onboarded',
     ],
   },
 ];

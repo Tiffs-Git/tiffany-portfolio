@@ -85,9 +85,9 @@ export default function Hero() {
         {/* Stat strip */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-14">
           {[
-            { n: '9 years', label: 'inside global airline operations' },
+            { n: '10 years', label: 'inside global airline operations' },
             { n: '7 platforms', label: 'administered as standing owner' },
-            { n: '3,500+', label: 'employees onboarded' },
+            { n: '4,000', label: 'employees onboarded' },
           ].map((s) => (
             <div key={s.n} className="text-center">
               <p className="font-display text-2xl md:text-3xl text-gradient-gold leading-none">{s.n}</p>

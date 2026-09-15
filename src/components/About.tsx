@@ -22,6 +22,8 @@ const industryInvolvement = [
   { label: 'IOSA Audit Preparation', sub: 'IATA Operational Safety Audit' },
   { label: 'Cross-Airline Benchmarking', sub: 'Pilot training program comparisons' },
   { label: 'FAA AQP Oversight', sub: 'Advanced Qualification Program' },
+  { label: 'Pilot Training Design', sub: 'Instructional systems design and facilitation for flight crew programs' },
+  { label: 'Maintenance Training Design', sub: 'Instructional systems design and facilitation for aircraft maintenance technicians' },
   { label: 'Tech Ops Brand Ambassador', sub: 'Internal culture and communications' },
   { label: 'Training Video Production', sub: 'On-camera talent and content for Tech Ops training programs' },
 ];

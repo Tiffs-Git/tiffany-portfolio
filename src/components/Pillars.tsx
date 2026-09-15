@@ -36,7 +36,7 @@ const pillars = [
   {
     icon: GraduationCap,
     title: 'Learning & Enablement',
-    desc: 'Certified instructional designer and facilitator. Curriculum, classrooms, and job aids built for the moment it clicks—onboarding 3,500+ across an enterprise.',
+    desc: 'Certified instructional systems designer and facilitator across aircraft maintenance and pilot training. Curriculum, classrooms, and job aids built for the moment it clicks, with 4,000 people onboarded across the enterprise.',
     color: 'text-fuchsia-400',
     border: 'border-fuchsia-600/30',
     bg: 'bg-fuchsia-900/10',

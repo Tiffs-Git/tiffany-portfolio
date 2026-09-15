@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import About from './components/About';
 import Pillars from './components/Pillars';
+import Instruction from './components/Instruction';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -17,6 +18,8 @@ export default function App() {
       <main>
         <Hero />
         <Pillars />
+        <SectionDivider flip />
+        <Instruction />
         <SectionDivider />
         <About />
         <SectionDivider flip />
